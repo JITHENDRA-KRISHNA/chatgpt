@@ -11,7 +11,7 @@ const User=require(__dirname+'/model/schema/userSchema.js')
 const bcrypt=require('bcrypt');
 const dbName = 'uplabs';
 const API_KEY=process.env.API_KEY; 
-const url=process.env.mongo;
+const url='mongodb+srv://jithendrakrishna:5FDG1l0jCO3LFC2Q@cluster0.a2obq1l.mongodb.net/?retryWrites=true&w=majority';
 const client=new MongoClient(url);
 const jwt=require('jsonwebtoken');
 const cookie=require('cookie');
