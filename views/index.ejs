@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PROJECT</title>
+  <title>CODE_GENERATOR</title>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
@@ -33,7 +34,8 @@
   
     .left-section {
       min-width: 20vw;
-      background-color: rgb(0, 0, 0);
+      max-width:20vw;
+      background-color: rgb(0, 0, 0,0.8);
       color:rgb(0, 0, 0);
       font-size: 24px;
       backdrop-filter: blur(20px);
@@ -44,15 +46,38 @@
     }
     .right-section {
       flex-grow: 1;
-      background-color: rgb(23, 23, 23);
-       /* background-image: url("logo-xs.png"); */
-       background-size: contain;
-       background-position-x: 40px;
-       background-repeat: no-repeat;
-      /* position: relative; */
+      /* background-color: rgb(23, 23, 23); */
+      background: linear-gradient(207deg, #d54cdf, #85a9ee, #c859e3, #5453e1);
+    background-size: 800% 800%;
+    -webkit-animation: AnimationName 20s ease infinite;
+    -moz-animation: AnimationName 51s ease infinite;
+    -o-animation: AnimationName 51s ease infinite;
+    animation: AnimationName 51s ease infinite;
       overflow: scroll;
       padding-bottom: 200px;
+      padding-top:20px;
     }
+   
+@-webkit-keyframes AnimationName {
+    0%{background-position:86% 0%}
+    50%{background-position:15% 100%}
+    100%{background-position:86% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:86% 0%}
+    50%{background-position:15% 100%}
+    100%{background-position:86% 0%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:86% 0%}
+    50%{background-position:15% 100%}
+    100%{background-position:86% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:86% 0%}
+    50%{background-position:15% 100%}
+    100%{background-position:86% 0%}
+}
     @keyframes gradientAnimation {
       0% { background-position: 0% center; }
       100% { background-position: 100% center; }
@@ -87,10 +112,11 @@
       width:90%;
       height:60px;
       background-color:rgb(255, 255, 255,0.8);
-      backdrop-filter: blur(20px);
+      /* backdrop-filter: blur(20px); */
       border-radius: 5px;
       padding-left:20px;
       border:none;
+      box-shadow: -2px -2px 10px rgb(133, 186, 250);
     }
   
     .fixed-input button {
@@ -200,6 +226,32 @@
 #signupp:hover{
     background-position:right;
 }
+#entryline{
+  font-size: 24px;
+  width:45%;
+  max-height:200px;
+  background:rgba(255,255,255,0.5);
+  margin: 9% 0 0  15% ;
+  padding:10%;
+  display:none;
+}
+#scrollToBottomButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index:13;
+}
+
+#scrollToBottomButton:hover {
+  background-color: #555;
+}
+
   </style>
   
 </head>
@@ -209,6 +261,7 @@
     <h1 style="color: rgb(255, 255, 255); margin-top:30px;margin-right:30%;">CODE GENERATOR</h1>
     <!-- <button id="logout" href="/logout"><p id="username"> LOG OUT </p></button> -->
     <% if(locals.user != null) {%>
+      <input type="hidden" id="username" value="<%= user %>">
       <a href="logout" > <ul><button id="signupp">
          <%= user %> &nbsp;&#10005; <i class='fas fa-arrow-circle-right'></i></button></ul></a>
           <%} else{%>
@@ -216,20 +269,24 @@
            <%= "Sign In" %> <i class='fas fa-arrow-circle-right'></i></button></a>
            <%}%>
        </a>
+       
+       <!-- <input type="hidden" id="usercred" value="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"> -->
   </header>
-  
+  <body>
   <div class="container">
     <div class="left-section">
       <h2 style="color: white;margin-left:30%">HISTORY</h2>
     </div>
     
     <div class="right-section">
-      <p></p>
+      <p id="entryline"> "YOUR PERSONAL CODING ASSISTANT"</p>
+      <button id="scrollToBottomButton" style="font-size: 20px;">&#8595;</button>
+      
     </div>
     
     <div class="fixed-input">
-      <input id="fixinp" type="text" placeholder="ENTER YOUR QUERY..!" />
-      <button id="submitbtn" onclick="submitQuery()"><p id="gotxt" style="font-size:44px;margin-top:1px">&#10144;</p>
+      <input id="fixinp" type="text" placeholder="ENTER YOUR QUERY..!"  onkeydown="handleKeyDown(event)" />
+      <button id="submitbtn" onclick="submitQuery()"><p id="gotxt" style="font-size:50px;margin-top:-5px">&#10144;</p>
         <div id="loadingContainer" style="display:none;z-index:10;">
           <div id="loadingAnimation"></div>
       </div>
@@ -238,6 +295,13 @@
   </div>
   <script type="text/javascript" src="app.js"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-  
+<script>
+   function handleKeyDown(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault(); // Prevent form submission
+      submitQuery();
+    }
+  }
+</script>
 </body>
 </html>

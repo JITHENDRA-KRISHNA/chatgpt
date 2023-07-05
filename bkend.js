@@ -1,3 +1,5 @@
+const dotenv= require('dotenv')
+dotenv.config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const { Configuration, OpenAIApi } = require("openai");
@@ -8,13 +10,13 @@ const session = require('express-session')
 const User=require(__dirname+'/model/schema/userSchema.js')
 const bcrypt=require('bcrypt');
 const dbName = 'uplabs';
-const url="mongodb+srv://jithendrakrishna:5FDG1l0jCO3LFC2Q@cluster0.a2obq1l.mongodb.net/?retryWrites=true&w=majority";
+const API_KEY=process.env.API_KEY; 
+const url=process.env.mongo;
 const client=new MongoClient(url);
 const jwt=require('jsonwebtoken');
 const cookie=require('cookie');
 const cookieparser=require('cookie-parser');
 const app = express();
-
 app.set('view-engine', 'ejs') 
 app.use(express.static(__dirname + '/public/java_script'));
 app.use(express.static(__dirname + '/public/images'));
@@ -84,6 +86,10 @@ app.post('/login',async(req,res)=>{
     }
 })
 
+app.get('/api/key', (req, res) => {
+  const apiKey = process.env.API_KEY;
+  res.send({ apiKey });
+});
 
 app.get('/register',verifyToken, (req, res) => {
   res.render('reg_page.ejs')
@@ -131,19 +137,18 @@ app.post('/register',verifyToken,async (req,res)=>{
         res.status(500).json({ error: 'Token verification failed' });
       } else {
         const { username } = decodedToken;
-        res.render('index.ejs', { user: username });
+        res.render('index.ejs', { user: username, apiKey: API_KEY  });
       }
     });
   }
   else{
-    res.render('index.ejs',)  
+    res.render('index.ejs');
   }
   })
 
   app.get("/logout",(req,res)=>{
     res.clearCookie('token');
     res.redirect('login');
-    console.log("2ojfnweijf")
   })
 
 app.listen(3000);
