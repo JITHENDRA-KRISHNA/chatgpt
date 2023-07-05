@@ -146,7 +146,6 @@ async function getMessage() {
       histDiv.style.marginTop = '10px';
       histDiv.appendChild(pElement);
       histDiv.style.padding = '3px';
-      histDiv.style.borderRadius='50px';
       historyElement.appendChild(histDiv);
 
       const chatHistory = getChatHistoryFromStorage();
