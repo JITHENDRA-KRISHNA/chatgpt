@@ -11,7 +11,6 @@ window.addEventListener('load', () => {
   .then(response => response.json())
   .then(data => {
      API_KEY = data.apiKey;
-    console.log(API_KEY);
   const chatHistory = getChatHistoryFromStorage();
   chatHistory.forEach(chat => {
     const userInput = chat.userInput;
@@ -91,7 +90,6 @@ function submitQuery() {
 submitButton.addEventListener('click', getMessage);
 
 async function getMessage() {
-  console.log('clicked');
   const input = inputElement.value.trim();
 
   if (input === '') {
@@ -120,7 +118,6 @@ async function getMessage() {
 
     const response = await fetch('https://api.openai.com/v1/chat/completions', options);
     const data = await response.json();
-    console.log(data);
     if (data.error) {
       gotext.style.display = 'flex';
       loadingContainer.style.display = 'none';
