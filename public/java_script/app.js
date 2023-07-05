@@ -11,6 +11,7 @@ window.addEventListener('load', () => {
   .then(response => response.json())
   .then(data => {
      API_KEY = data.apiKey;
+    console.log(API_KEY);
   const chatHistory = getChatHistoryFromStorage();
   chatHistory.forEach(chat => {
     const userInput = chat.userInput;
