@@ -5,7 +5,7 @@ const historyElement = document.querySelector('.left-section');
 const entryElement = document.getElementById('entryline');
 const scrollToBottomButton = document.getElementById('scrollToBottomButton');
 
-var APIKEY='';
+var API_KEY='';
 window.addEventListener('load', () => {
   fetch('/api/key')
   .then(response => response.json())
