@@ -140,12 +140,13 @@ async function getMessage() {
       const createdValue = data.created;
       histDiv.setAttribute('id', createdValue);
       pElement.textContent = input;
-      histDiv.style.width = '95%';
+      histDiv.style.width = '100%';
       histDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
       histDiv.style.backdropFilter = 'blur(20px)';
       histDiv.style.marginTop = '10px';
       histDiv.appendChild(pElement);
       histDiv.style.padding = '3px';
+      histDiv.style.borderRadius='50px';
       historyElement.appendChild(histDiv);
 
       const chatHistory = getChatHistoryFromStorage();
@@ -182,6 +183,7 @@ function createUserInputDiv(input) {
   userInputDiv.style.padding = '10px';
   userInputDiv.style.marginBottom = '10px';
   userInputDiv.style.marginLeft = '30px';
+  userInputDiv.style.borderRadius='5px';
   // userInputDiv.style.backgroundColor = 'rgb(169, 169, 169)';
   // userInputDiv.style.borderTop = '4px solid green';
   userInputDiv.style.background='rgba(255,255,255,0.5)';
@@ -232,6 +234,7 @@ function createOutputDiv(content, data) {
   outputDiv.style.marginLeft = '30px';
   outputDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
   outputDiv.style.borderBottom = '3.5px solid blue';
+  outputDiv.style.borderRadius='5px';
   
 
   const aiButton = document.createElement('button');
@@ -312,7 +315,7 @@ function createHistoryButton(userInput, data) {
 
 function pointdiv(id) {
   const ogc = 'rgba(255, 255, 255, 0.8)';
-  const chc = 'yellow';
+  const chc = 'lightyellow';
   const div = outputContainer.querySelector(`div[id="${id}"]`);
 
   if (!div) {
