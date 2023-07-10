@@ -138,7 +138,7 @@ async function getMessage() {
       const createdValue = data.created;
       histDiv.setAttribute('id', createdValue);
       pElement.textContent = input;
-      histDiv.style.width = '100%';
+       histDiv.style.width = '95%';
       histDiv.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
       histDiv.style.backdropFilter = 'blur(20px)';
       histDiv.style.marginTop = '10px';
